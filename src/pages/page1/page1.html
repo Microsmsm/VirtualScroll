@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page One</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+ <ion-list [virtualScroll]="items" >
+      
+
+
+        <ion-card *virtualItem="let item" style="transform: translate3d(0px, 0px, 0px);">
+
+        <img  *ngIf=" item.id %2 ===0" src="{{item.avatarUrl}}" />
+
+        <ion-card-content *ngIf=" item.id %2 ===0">
+          <h2>Image Card Number {{ item.id }}</h2>
+        </ion-card-content>
+        <ion-card-content *ngIf=" item.id %2 !==0">
+          <h2>{{item.title}} Number {{ item.id }}</h2>
+
+          <p>{{item.body}}</p>
+        </ion-card-content>
+
+      </ion-card>
+
+      
+    </ion-list >
+      
+    
+
+
+
+
+
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
